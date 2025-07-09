@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+<script type="text/javascript" src="../../resources/master/ol-ext-master/dist/jquery-1.11.0.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes"> 
+		
+		
+		
+		
+<script type="text/javascript" src="../../resources/master/ol-ext-master/dist/ol.js"></script>	
+		<link rel="stylesheet" href="../../resources/ol.css">
+
+		<link rel="stylesheet" href="../../resources/master/ol-ext-master/dist/ol-ext.css"/>
+		<script type="text/javascript" src="../../resources/master/ol-ext-master/dist/ol-ext.js"></script>	
+		<script src="../../resources/master/ol-ext-master/dist/FontAwesome5Def.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../resources/master/font-awesome-master/js/fontawesome-all.css">
+		<link rel="stylesheet" href="../../resources/master/sidebar-v2-master/css/ol3-sidebar.css">
+		<script src="../../resources/master/sidebar-v2-master/js/ol3-sidebar.js" charset="utf-8"></script>
+
+		<script src="../../resources/master/ol-street-view-master/dist/interact.min.js" data-no-source-map></script>
+		<script src="../../resources/master/ol-street-view-master/dist/ol-street-view.js" data-no-source-map></script>	
+		<link rel="stylesheet" href="../../resources/master/ol-street-view-master/dist/css/ol-street-view.css" />
+		<!--<link rel="stylesheet" href="./resources/fontawesome-all.min.css">-->
+        <!--<link rel="stylesheet" href="./resources/ol-layerswitcher.css">-->
+        <link rel="stylesheet" href="../../resources/thanks_for_the_coffee.css">
+		<script src="../../resources/thanks_for_the_coffee_expressions.js"></script>
+		<script src="../../resources/master/proj4js-master/dist/proj4.js"></script>
+        <script src="../../resources/functions.js"></script>
+        <!--<script src="./resources/ol-layerswitcher.js"></script>-->
+		<link href="../../resources/master/ol-geocoder-master/dist/ol-geocoder.css" rel="stylesheet">
+        <script src="../../resources/master/ol-geocoder-master/dist/ol-geocoder.js"></script>		
+
+		<link rel="stylesheet" href="../../resources/o.gis/o.gis_style.css">
+
+
+<title>Recherche Parcelle</title>
+<script src="https://cdn.jsdelivr.net/npm/ol@6.5.0/dist/ol.js"></script>
+<script src="https://unpkg.com/ol-ext/dist/ol-ext.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/ol-ext/dist/ol-ext.min.css" />
+<style>
+  body { font-family: sans-serif; padding: 10px; }
+  #fiche-content { margin-top: 1em; }
+</style>
+
+<script src="../../layers/Natura2000.js"></script>           <!-- Exemple couche 1 -->
+
+
+
+<script src="../../layers/Autresitinraires.js"></script>
+<script src="../../layers/BoisElbeufenBray.js"></script>
+<script src="../../layers/BoisprotgsRosay.js"></script>
+<script src="../../layers/BtiagricoleLaFeuillie.js"></script>
+<script src="../../layers/BtiagricoleLesGrandesVentes.js"></script>
+<script src="../../layers/CanalisationsgazGRDF.js"></script>
+<script src="../../layers/CanalisationsgazGRT.js"></script>
+<script src="../../layers/CCBrayEawy.js"></script>
+<script src="../../layers/CCdeLondinieres.js"></script>
+<script src="../../layers/CCdes4Rivires.js"></script>
+<script src="../../layers/Cimetire.js"></script>
+<script src="../../layers/ClassementsonoreRDVC.js"></script>
+<script src="../../layers/ClassementsonoreRDVCfuseau.js"></script>
+<script src="../../layers/ClassementsonoreRF.js"></script>
+<script src="../../layers/ClassementsonoreRFfuseau.js"></script>
+<script src="../../layers/ClassementsonoreRRN.js"></script>
+<script src="../../layers/ClassementsonoreRRNfuseau.js"></script>
+<script src="../../layers/Codesparcellescadastrales.js"></script>
+<script src="../../layers/CodessecteursBoscMesnil.js"></script>
+<script src="../../layers/CodessecteursBouelles.js"></script>
+<script src="../../layers/CodessecteursBrmontierMerval.js"></script>
+<script src="../../layers/CodessecteursBzancourt.js"></script>
+<script src="../../layers/CodessecteursCompainville.js"></script>
+<script src="../../layers/CodessecteursCritot.js"></script>
+<script src="../../layers/CodessecteursCuySaintFiacre.js"></script>
+<script src="../../layers/CodessecteursDampierreenBray.js"></script>
+<script src="../../layers/CodessecteursElbeufenBray.js"></script>
+<script src="../../layers/CodessecteursErnemontlaVillette.js"></script>
+<script src="../../layers/CodessecteursEsclavelles.js"></script>
+<script src="../../layers/CodessecteursFerriresenBray.js"></script>
+<script src="../../layers/CodessecteursFesques.js"></script>
+<script src="../../layers/CodessecteursForgeslesEaux.js"></script>
+<script src="../../layers/CodessecteursFry.js"></script>
+<script src="../../layers/CodessecteursGaillefontaine.js"></script>
+<script src="../../layers/CodessecteursGournayenBray.js"></script>
+<script src="../../layers/CodessecteursLaFeuillie.js"></script>
+<script src="../../layers/CodessecteursLesGrandesVentes.js"></script>
+<script src="../../layers/CodessecteursMathonville.js"></script>
+<script src="../../layers/CodessecteursMaucomble.js"></script>
+<script src="../../layers/CodessecteursMolagnies.js"></script>
+<script src="../../layers/CodessecteursMontrolier.js"></script>
+<script src="../../layers/CodessecteursMontroty.js"></script>
+<script src="../../layers/CodessecteursMsangueville.js"></script>
+<script src="../../layers/CodessecteursNesleHodeng.js"></script>
+<script src="../../layers/CodessecteursNeufMarch.js"></script>
+<script src="../../layers/CodessecteursOsmoySaintValry.js"></script>
+<script src="../../layers/CodessecteursRocquemont.js"></script>
+<script src="../../layers/CodessecteursRosay.js"></script>
+<script src="../../layers/CodessecteursSainteGenevive.js"></script>
+<script src="../../layers/CodessecteursSaintGermainsurEaulne.js"></script>
+<script src="../../layers/CodessecteursSaintLucien.js"></script>
+<script src="../../layers/CodessecteursSaintSaire.js"></script>
+<script src="../../layers/CodessecteursSaintSans.js"></script>
+<script src="../../layers/CodessecteursSigyenBray.js"></script>
+<script src="../../layers/Communes.js"></script>
+<script src="../../layers/CommunesadhrentesADS.js"></script>
+<script src="../../layers/Communesassociesoudlgues.js"></script>
+<script src="../../layers/Constructionsponctuelles.js"></script>
+<script src="../../layers/CorpsdefermeLaFeuillie.js"></script>
+<script src="../../layers/CorpsdefermeLesGrandesVentes.js"></script>
+<script src="../../layers/DistancedereculautourdubtiLaFeuillie.js"></script>
+<script src="../../layers/DistancedereculautourdubtiLesGrandesVentes.js"></script>
+<script src="../../layers/DroitdePremptionCuySaintFiacre.js"></script>
+<script src="../../layers/DroitdepremptionDampierreenBray.js"></script>
+<script src="../../layers/DroitdePremptionurbainCritot.js"></script>
+<script src="../../layers/Dtailshydrographiques.js"></script>
+<script src="../../layers/EPCIvoisins.js"></script>
+<script src="../../layers/ERP.js"></script>
+<script src="../../layers/EspaceboisclassErnemontlaVillette.js"></script>
+<script src="../../layers/Fortspubliques.js"></script>
+<script src="../../layers/Haies.js"></script>
+<script src="../../layers/ICPE.js"></script>
+<script src="../../layers/Indiffrenci.js"></script>
+<script src="../../layers/Industrielagricoleoucommercial.js"></script>
+<script src="../../layers/layers.js"></script>
+<script src="../../layers/LignesbassetensionariennesENEDIS.js"></script>
+<script src="../../layers/LignesbassetensionsouterrainesENEDIS.js"></script>
+<script src="../../layers/LigneshautetensionariennesENEDIS.js"></script>
+<script src="../../layers/LigneshautetensionRTE.js"></script>
+<script src="../../layers/LigneshautetensionsouterrainesENEDIS.js"></script>
+<script src="../../layers/Lotissements.js"></script>
+<script src="../../layers/lotsanonymesPACLaFeuillie.js"></script>
+<script src="../../layers/MaresPRAM.js"></script>
+<script src="../../layers/Monument.js"></script>
+<script src="../../layers/Monumentshistoriques.js"></script>
+<script src="../../layers/Natura2000.js"></script>
+<script src="../../layers/Niveaudurisque.js"></script>
+<script src="../../layers/Nomdescommunes.js"></script>
+<script src="../../layers/Parcellescadastrales.js"></script>
+<script src="../../layers/PETRduPaysdeBray.js"></script>
+<script src="../../layers/Postesdetransformation.js"></script>
+<script src="../../layers/PrescriptionslinaireMaucomble.js"></script>
+<script src="../../layers/PrescriptionslinairesBrmontierMerval.js"></script>
+<script src="../../layers/PrescriptionslinairesBzancourt.js"></script>
+<script src="../../layers/PrescriptionslinairesFerriresenBray.js"></script>
+<script src="../../layers/PrescriptionslinairesForgeslesEaux.js"></script>
+<script src="../../layers/PrescriptionslinairesGournayenBray.js"></script>
+<script src="../../layers/PrescriptionslinairesLaFeuillie.js"></script>
+<script src="../../layers/PrescriptionslinairesLesGrandesVentes.js"></script>
+<script src="../../layers/PrescriptionslinairesOsmoySaintValry.js"></script>
+<script src="../../layers/PrescriptionslinairesSaintLucien.js"></script>
+<script src="../../layers/PrescriptionslinairesSaintSans.js"></script>
+<script src="../../layers/PrescriptionslinairesSigyenBray.js"></script>
+<script src="../../layers/PrescriptionsponctuellesBrmontierMerval.js"></script>
+<script src="../../layers/PrescriptionsponctuellesBzancourt.js"></script>
+<script src="../../layers/PrescriptionsponctuellesCritot.js"></script>
+<script src="../../layers/PrescriptionsponctuellesFerriresenBray.js"></script>
+<script src="../../layers/PrescriptionsponctuellesForgeslesEaux.js"></script>
+<script src="../../layers/PrescriptionsponctuellesGournayenBray.js"></script>
+<script src="../../layers/PrescriptionsponctuellesLaFeuillie.js"></script>
+<script src="../../layers/PrescriptionsponctuellesLesGrandesVentes.js"></script>
+<script src="../../layers/PrescriptionsponctuellesMaucomble.js"></script>
+<script src="../../layers/PrescriptionsponctuellesOsmoySaintValry.js"></script>
+<script src="../../layers/PrescriptionsponctuellesSaintLucien.js"></script>
+<script src="../../layers/PrescriptionsponctuellesSaintSans.js"></script>
+<script src="../../layers/PrescriptionsponctuellesSigyenBray.js"></script>
+<script src="../../layers/Prescriptionssurfaciques1ForgeslesEaux.js"></script>
+<script src="../../layers/Prescriptionssurfaciques1Maucomble.js"></script>
+<script src="../../layers/Prescriptionssurfaciques2ForgeslesEaux.js"></script>
+<script src="../../layers/Prescriptionssurfaciques2Maucomble.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesBrmontierMerval.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesBzancourt.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesCritot.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesFerriresenBray.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesGournayenBray.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesLaFeuillie.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesLesGrandesVentes.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesOsmoySaintValry.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesRocquemont.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesSaintLucien.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesSaintSans.js"></script>
+<script src="../../layers/PrescriptionssurfaciquesSigyenBray.js"></script>
+<script src="../../layers/Primtredeprotectionincendie100mLaFeuillie.js"></script>
+<script src="../../layers/Primtredeprotectionincendie15mLaFeuillie.js"></script>
+<script src="../../layers/PrimtresdeprotectiondecaptageSaintSans.js"></script>
+<script src="../../layers/PrimtresdeProtectionImmdiatsPPI.js"></script>
+<script src="../../layers/PrimtresdeProtectionloignsPPE.js"></script>
+<script src="../../layers/PrimtresdeProtectionRapprochsPPR.js"></script>
+<script src="../../layers/PrimtresMonumentsHistoriques.js"></script>
+<script src="../../layers/Pylne.js"></script>
+<script src="../../layers/Remontesdenappes.js"></script>
+<script src="../../layers/RoutesdeGrandeCirculation.js"></script>
+<script src="../../layers/Routesnumrotesounommes.js"></script>
+<script src="../../layers/Rservoir.js"></script>
+<script src="../../layers/Ruissellement.js"></script>
+<script src="../../layers/RuissellementForgeslesEaux.js"></script>
+<script src="../../layers/RuissellementSaintSans.js"></script>
+<script src="../../layers/Secteurs.js"></script>
+<script src="../../layers/SecteursBoscMesnil.js"></script>
+<script src="../../layers/SecteursBouelles.js"></script>
+<script src="../../layers/SecteursBrmontierMerval.js"></script>
+<script src="../../layers/SecteursBzancourt.js"></script>
+<script src="../../layers/SecteursCallengeville.js"></script>
+<script src="../../layers/SecteursCodessecteursEsclavelles.js"></script>
+<script src="../../layers/SecteursCompainville.js"></script>
+<script src="../../layers/SecteursCritot.js"></script>
+<script src="../../layers/SecteursCuySaintFiacre.js"></script>
+<script src="../../layers/SecteursDampierreenBray.js"></script>
+<script src="../../layers/SecteursElbeufenBray.js"></script>
+<script src="../../layers/SecteursErnemontlaVillette.js"></script>
+<script src="../../layers/SecteursFerriresenBray.js"></script>
+<script src="../../layers/SecteursFesques.js"></script>
+<script src="../../layers/SecteursForgeslesEaux.js"></script>
+<script src="../../layers/SecteursFry.js"></script>
+<script src="../../layers/SecteursGaillefontaine.js"></script>
+<script src="../../layers/SecteursGournayenBray.js"></script>
+<script src="../../layers/SecteursLaFeuillie.js"></script>
+<script src="../../layers/SecteursLesGrandesVentes.js"></script>
+<script src="../../layers/SecteursMassy.js"></script>
+<script src="../../layers/SecteursMathonville.js"></script>
+<script src="../../layers/SecteursMaucomble.js"></script>
+<script src="../../layers/SecteursMolagnies.js"></script>
+<script src="../../layers/SecteursMontrolier.js"></script>
+<script src="../../layers/SecteursMontroty.js"></script>
+<script src="../../layers/SecteursMsangueville.js"></script>
+<script src="../../layers/SecteursNesleHodeng.js"></script>
+<script src="../../layers/SecteursNeufMarch.js"></script>
+<script src="../../layers/SecteursOsmoySaintValry.js"></script>
+<script src="../../layers/SecteursRocquemont.js"></script>
+<script src="../../layers/SecteursRosay.js"></script>
+<script src="../../layers/SecteursSainteGenevive.js"></script>
+<script src="../../layers/SecteursSaintGermainsurEaulne.js"></script>
+<script src="../../layers/SecteursSaintLucien.js"></script>
+<script src="../../layers/SecteursSaintSaire.js"></script>
+<script src="../../layers/SecteursSaintSans.js"></script>
+<script src="../../layers/SecteursSigyenBray.js"></script>
+<script src="../../layers/SecteursSommery.js"></script>
+<script src="../../layers/SitesBASOL.js"></script>
+<script src="../../layers/Sitesclasss.js"></script>
+<script src="../../layers/Sitesinscrits.js"></script>
+<script src="../../layers/Sitespollus.js"></script>
+<script src="../../layers/SPR.js"></script>
+<script src="../../layers/Surfaceshydrographiques.js"></script>
+<script src="../../layers/Terraindesport.js"></script>
+<script src="../../layers/Toponymiehydrographie.js"></script>
+<script src="../../layers/Trononshydrographiques.js"></script>
+<script src="../../layers/Voieferre.js"></script>
+<script src="../../layers/ZNIEFFtype1.js"></script>
+<script src="../../layers/ZNIEFFtype2.js"></script>
+<script src="../../layers/ZoneArchologiqueGournayenBrayZone1.js"></script>
+<script src="../../layers/ZoneArchologiqueGournayenBrayZone2.js"></script>
+<script src="../../layers/Zonedactivitetdeservice.js"></script>
+<script src="../../layers/Zonesarchologiques.js"></script>
+<script src="../../layers/Zonesdalas.js"></script>
+<script src="../../layers/Zoneshumides.js"></script>
+<script src="../../layers/Zonesrglementaires.js"></script>
+
+      
+
+
+
+
+
+</head>
+<body>
+  <h3>Recherche Parcelle</h3>
+
+  <input type="text" id="search-input" placeholder="Ex: 76000 A123" />
+  <button id="search-btn">Rechercher</button>
+    <button id="intersect-btn" disabled>Vérifier intersections</button>
+	<button id="export-pdf-btn" disabled>Exporter en PDF</button>
+
+  <div id="fiche-content">Entrez un code parcelle et cliquez sur Rechercher</div>
+
+  <script>
+
+  // Format GeoJSON OL
+  var format = new ol.format.GeoJSON();
+
+  // Parcelles
+  var featuresParcelles = format.readFeatures(json_Parcellescadastrales, {
+    dataProjection: 'EPSG:4326',
+    featureProjection: 'EPSG:3857'
+  });
+  featuresParcelles.forEach(f => {
+    let commune = f.get('commune') || '';
+    let section = f.get('section') || '';
+    let numero = f.get('numero') || '';
+    f.set('sect_code', commune + ' ' + section + numero);
+  });
+  var sourceParcelles = new ol.source.Vector({ features: featuresParcelles });
+
+
+
+
+
+  // Exemple couche Natura2000
+  var featuresNatura2000 = format.readFeatures(json_Natura2000, {
+    dataProjection: 'EPSG:4326',
+    featureProjection: 'EPSG:3857'
+  });
+  var sourceNatura2000 = new ol.source.Vector({ features: featuresNatura2000 });
+
+  // Exemple couche ZNIEFF
+  var featuresZNIEFF = format.readFeatures(json_ZNIEFFtype1, {
+    dataProjection: 'EPSG:4326',
+    featureProjection: 'EPSG:3857'
+  });
+  var sourceZNIEFF = new ol.source.Vector({ features: featuresZNIEFF });
+  
+  var featuresZNIEFF2 = format.readFeatures(json_ZNIEFFtype2, {
+    dataProjection: 'EPSG:4326',
+    featureProjection: 'EPSG:3857'
+  });
+  var sourceZNIEFF2 = new ol.source.Vector({ features: featuresZNIEFF2 });
+  
+var featuresAutresitinraires = format.readFeatures(json_Autresitinraires, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceAutresitinraires = new ol.source.Vector({ features: featuresAutresitinraires });
+
+var featuresBoisElbeufenBray = format.readFeatures(json_BoisElbeufenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceBoisElbeufenBray = new ol.source.Vector({ features: featuresBoisElbeufenBray });
+
+var featuresBoisprotgsRosay = format.readFeatures(json_BoisprotgsRosay, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceBoisprotgsRosay = new ol.source.Vector({ features: featuresBoisprotgsRosay });
+
+var featuresBtiagricoleLaFeuillie = format.readFeatures(json_BtiagricoleLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceBtiagricoleLaFeuillie = new ol.source.Vector({ features: featuresBtiagricoleLaFeuillie });
+
+var featuresBtiagricoleLesGrandesVentes = format.readFeatures(json_BtiagricoleLesGrandesVentes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceBtiagricoleLesGrandesVentes = new ol.source.Vector({ features: featuresBtiagricoleLesGrandesVentes });
+
+var featuresCanalisationsgazGRDF = format.readFeatures(json_CanalisationsgazGRDF, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCanalisationsgazGRDF = new ol.source.Vector({ features: featuresCanalisationsgazGRDF });
+
+var featuresCanalisationsgazGRT = format.readFeatures(json_CanalisationsgazGRT, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCanalisationsgazGRT = new ol.source.Vector({ features: featuresCanalisationsgazGRT });
+
+var featuresCCBrayEawy = format.readFeatures(json_CCBrayEawy, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCCBrayEawy = new ol.source.Vector({ features: featuresCCBrayEawy });
+
+var featuresCCdeLondinieres = format.readFeatures(json_CCdeLondinieres, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCCdeLondinieres = new ol.source.Vector({ features: featuresCCdeLondinieres });
+
+var featuresCCdes4Rivires = format.readFeatures(json_CCdes4Rivires, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCCdes4Rivires = new ol.source.Vector({ features: featuresCCdes4Rivires });
+
+var featuresCimetire = format.readFeatures(json_Cimetire, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCimetire = new ol.source.Vector({ features: featuresCimetire });
+
+var featuresClassementsonoreRDVC = format.readFeatures(json_ClassementsonoreRDVC, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceClassementsonoreRDVC = new ol.source.Vector({ features: featuresClassementsonoreRDVC });
+
+var featuresClassementsonoreRDVCfuseau = format.readFeatures(json_ClassementsonoreRDVCfuseau, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceClassementsonoreRDVCfuseau = new ol.source.Vector({ features: featuresClassementsonoreRDVCfuseau });
+
+var featuresClassementsonoreRF = format.readFeatures(json_ClassementsonoreRF, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceClassementsonoreRF = new ol.source.Vector({ features: featuresClassementsonoreRF });
+
+var featuresClassementsonoreRFfuseau = format.readFeatures(json_ClassementsonoreRFfuseau, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceClassementsonoreRFfuseau = new ol.source.Vector({ features: featuresClassementsonoreRFfuseau });
+
+var featuresClassementsonoreRRN = format.readFeatures(json_ClassementsonoreRRN, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceClassementsonoreRRN = new ol.source.Vector({ features: featuresClassementsonoreRRN });
+
+var featuresClassementsonoreRRNfuseau = format.readFeatures(json_ClassementsonoreRRNfuseau, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceClassementsonoreRRNfuseau = new ol.source.Vector({ features: featuresClassementsonoreRRNfuseau });
+
+
+var featuresCommunes = format.readFeatures(json_Communes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCommunes = new ol.source.Vector({ features: featuresCommunes });
+
+var featuresCommunesadhrentesADS = format.readFeatures(json_CommunesadhrentesADS, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCommunesadhrentesADS = new ol.source.Vector({ features: featuresCommunesadhrentesADS });
+
+var featuresCommunesassociesoudlgues = format.readFeatures(json_Communesassociesoudlgues, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCommunesassociesoudlgues = new ol.source.Vector({ features: featuresCommunesassociesoudlgues });
+
+var featuresConstructionsponctuelles = format.readFeatures(json_Constructionsponctuelles, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceConstructionsponctuelles = new ol.source.Vector({ features: featuresConstructionsponctuelles });
+
+var featuresCorpsdefermeLaFeuillie = format.readFeatures(json_CorpsdefermeLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCorpsdefermeLaFeuillie = new ol.source.Vector({ features: featuresCorpsdefermeLaFeuillie });
+
+var featuresCorpsdefermeLesGrandesVentes = format.readFeatures(json_CorpsdefermeLesGrandesVentes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceCorpsdefermeLesGrandesVentes = new ol.source.Vector({ features: featuresCorpsdefermeLesGrandesVentes });
+
+var featuresDistancedereculautourdubtiLaFeuillie = format.readFeatures(json_DistancedereculautourdubtiLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceDistancedereculautourdubtiLaFeuillie = new ol.source.Vector({ features: featuresDistancedereculautourdubtiLaFeuillie });
+
+var featuresDistancedereculautourdubtiLesGrandesVentes = format.readFeatures(json_DistancedereculautourdubtiLesGrandesVentes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceDistancedereculautourdubtiLesGrandesVentes = new ol.source.Vector({ features: featuresDistancedereculautourdubtiLesGrandesVentes });
+
+var featuresDroitdePremptionCuySaintFiacre = format.readFeatures(json_DroitdePremptionCuySaintFiacre, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceDroitdePremptionCuySaintFiacre = new ol.source.Vector({ features: featuresDroitdePremptionCuySaintFiacre });
+
+var featuresDroitdepremptionDampierreenBray = format.readFeatures(json_DroitdepremptionDampierreenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceDroitdepremptionDampierreenBray = new ol.source.Vector({ features: featuresDroitdepremptionDampierreenBray });
+
+var featuresDroitdePremptionurbainCritot = format.readFeatures(json_DroitdePremptionurbainCritot, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceDroitdePremptionurbainCritot = new ol.source.Vector({ features: featuresDroitdePremptionurbainCritot });
+
+var featuresDtailshydrographiques = format.readFeatures(json_Dtailshydrographiques, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceDtailshydrographiques = new ol.source.Vector({ features: featuresDtailshydrographiques });
+
+var featuresEPCIvoisins = format.readFeatures(json_EPCIvoisins, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceEPCIvoisins = new ol.source.Vector({ features: featuresEPCIvoisins });
+
+var featuresERP = format.readFeatures(json_ERP, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceERP = new ol.source.Vector({ features: featuresERP });
+
+var featuresEspaceboisclassErnemontlaVillette = format.readFeatures(json_EspaceboisclassErnemontlaVillette, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceEspaceboisclassErnemontlaVillette = new ol.source.Vector({ features: featuresEspaceboisclassErnemontlaVillette });
+
+var featuresFortspubliques = format.readFeatures(json_Fortspubliques, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceFortspubliques = new ol.source.Vector({ features: featuresFortspubliques });
+
+var featuresHaies = format.readFeatures(json_Haies, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceHaies = new ol.source.Vector({ features: featuresHaies });
+
+var featuresICPE = format.readFeatures(json_ICPE, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceICPE = new ol.source.Vector({ features: featuresICPE });
+
+var featuresIndiffrenci = format.readFeatures(json_Indiffrenci, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceIndiffrenci = new ol.source.Vector({ features: featuresIndiffrenci });
+
+var featuresIndustrielagricoleoucommercial = format.readFeatures(json_Industrielagricoleoucommercial, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceIndustrielagricoleoucommercial = new ol.source.Vector({ features: featuresIndustrielagricoleoucommercial });
+
+
+var featuresLignesbassetensionariennesENEDIS = format.readFeatures(json_LignesbassetensionariennesENEDIS, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceLignesbassetensionariennesENEDIS = new ol.source.Vector({ features: featuresLignesbassetensionariennesENEDIS });
+
+var featuresLignesbassetensionsouterrainesENEDIS = format.readFeatures(json_LignesbassetensionsouterrainesENEDIS, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceLignesbassetensionsouterrainesENEDIS = new ol.source.Vector({ features: featuresLignesbassetensionsouterrainesENEDIS });
+
+var featuresLigneshautetensionariennesENEDIS = format.readFeatures(json_LigneshautetensionariennesENEDIS, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceLigneshautetensionariennesENEDIS = new ol.source.Vector({ features: featuresLigneshautetensionariennesENEDIS });
+
+var featuresLigneshautetensionRTE = format.readFeatures(json_LigneshautetensionRTE, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceLigneshautetensionRTE = new ol.source.Vector({ features: featuresLigneshautetensionRTE });
+
+var featuresLigneshautetensionsouterrainesENEDIS = format.readFeatures(json_LigneshautetensionsouterrainesENEDIS, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceLigneshautetensionsouterrainesENEDIS = new ol.source.Vector({ features: featuresLigneshautetensionsouterrainesENEDIS });
+
+var featuresLotissements = format.readFeatures(json_Lotissements, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceLotissements = new ol.source.Vector({ features: featuresLotissements });
+
+var featureslotsanonymesPACLaFeuillie = format.readFeatures(json_lotsanonymesPACLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcelotsanonymesPACLaFeuillie = new ol.source.Vector({ features: featureslotsanonymesPACLaFeuillie });
+
+var featuresMaresPRAM = format.readFeatures(json_MaresPRAM, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceMaresPRAM = new ol.source.Vector({ features: featuresMaresPRAM });
+
+var featuresMonument = format.readFeatures(json_Monument, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceMonument = new ol.source.Vector({ features: featuresMonument });
+
+var featuresMonumentshistoriques = format.readFeatures(json_Monumentshistoriques, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceMonumentshistoriques = new ol.source.Vector({ features: featuresMonumentshistoriques });
+
+
+var featuresNiveaudurisque = format.readFeatures(json_Niveaudurisque, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceNiveaudurisque = new ol.source.Vector({ features: featuresNiveaudurisque });
+
+
+var featuresPETRduPaysdeBray = format.readFeatures(json_PETRduPaysdeBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePETRduPaysdeBray = new ol.source.Vector({ features: featuresPETRduPaysdeBray });
+
+var featuresPostesdetransformation = format.readFeatures(json_Postesdetransformation, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePostesdetransformation = new ol.source.Vector({ features: featuresPostesdetransformation });
+
+var featuresPrescriptionslinaireMaucomble = format.readFeatures(json_PrescriptionslinaireMaucomble, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinaireMaucomble = new ol.source.Vector({ features: featuresPrescriptionslinaireMaucomble });
+
+var featuresPrescriptionslinairesBrmontierMerval = format.readFeatures(json_PrescriptionslinairesBrmontierMerval, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesBrmontierMerval = new ol.source.Vector({ features: featuresPrescriptionslinairesBrmontierMerval });
+
+var featuresPrescriptionslinairesBzancourt = format.readFeatures(json_PrescriptionslinairesBzancourt, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesBzancourt = new ol.source.Vector({ features: featuresPrescriptionslinairesBzancourt });
+
+var featuresPrescriptionslinairesFerriresenBray = format.readFeatures(json_PrescriptionslinairesFerriresenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesFerriresenBray = new ol.source.Vector({ features: featuresPrescriptionslinairesFerriresenBray });
+
+var featuresPrescriptionslinairesForgeslesEaux = format.readFeatures(json_PrescriptionslinairesForgeslesEaux, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesForgeslesEaux = new ol.source.Vector({ features: featuresPrescriptionslinairesForgeslesEaux });
+
+var featuresPrescriptionslinairesGournayenBray = format.readFeatures(json_PrescriptionslinairesGournayenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesGournayenBray = new ol.source.Vector({ features: featuresPrescriptionslinairesGournayenBray });
+
+var featuresPrescriptionslinairesLaFeuillie = format.readFeatures(json_PrescriptionslinairesLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesLaFeuillie = new ol.source.Vector({ features: featuresPrescriptionslinairesLaFeuillie });
+
+var featuresPrescriptionslinairesLesGrandesVentes = format.readFeatures(json_PrescriptionslinairesLesGrandesVentes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesLesGrandesVentes = new ol.source.Vector({ features: featuresPrescriptionslinairesLesGrandesVentes });
+
+var featuresPrescriptionslinairesOsmoySaintValry = format.readFeatures(json_PrescriptionslinairesOsmoySaintValry, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesOsmoySaintValry = new ol.source.Vector({ features: featuresPrescriptionslinairesOsmoySaintValry });
+
+var featuresPrescriptionslinairesSaintLucien = format.readFeatures(json_PrescriptionslinairesSaintLucien, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesSaintLucien = new ol.source.Vector({ features: featuresPrescriptionslinairesSaintLucien });
+
+var featuresPrescriptionslinairesSaintSans = format.readFeatures(json_PrescriptionslinairesSaintSans, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesSaintSans = new ol.source.Vector({ features: featuresPrescriptionslinairesSaintSans });
+
+var featuresPrescriptionslinairesSigyenBray = format.readFeatures(json_PrescriptionslinairesSigyenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionslinairesSigyenBray = new ol.source.Vector({ features: featuresPrescriptionslinairesSigyenBray });
+
+var featuresPrescriptionsponctuellesBrmontierMerval = format.readFeatures(json_PrescriptionsponctuellesBrmontierMerval, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesBrmontierMerval = new ol.source.Vector({ features: featuresPrescriptionsponctuellesBrmontierMerval });
+
+var featuresPrescriptionsponctuellesBzancourt = format.readFeatures(json_PrescriptionsponctuellesBzancourt, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesBzancourt = new ol.source.Vector({ features: featuresPrescriptionsponctuellesBzancourt });
+
+var featuresPrescriptionsponctuellesCritot = format.readFeatures(json_PrescriptionsponctuellesCritot, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesCritot = new ol.source.Vector({ features: featuresPrescriptionsponctuellesCritot });
+
+var featuresPrescriptionsponctuellesFerriresenBray = format.readFeatures(json_PrescriptionsponctuellesFerriresenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesFerriresenBray = new ol.source.Vector({ features: featuresPrescriptionsponctuellesFerriresenBray });
+
+var featuresPrescriptionsponctuellesForgeslesEaux = format.readFeatures(json_PrescriptionsponctuellesForgeslesEaux, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesForgeslesEaux = new ol.source.Vector({ features: featuresPrescriptionsponctuellesForgeslesEaux });
+
+var featuresPrescriptionsponctuellesGournayenBray = format.readFeatures(json_PrescriptionsponctuellesGournayenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesGournayenBray = new ol.source.Vector({ features: featuresPrescriptionsponctuellesGournayenBray });
+
+var featuresPrescriptionsponctuellesLaFeuillie = format.readFeatures(json_PrescriptionsponctuellesLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesLaFeuillie = new ol.source.Vector({ features: featuresPrescriptionsponctuellesLaFeuillie });
+
+var featuresPrescriptionsponctuellesLesGrandesVentes = format.readFeatures(json_PrescriptionsponctuellesLesGrandesVentes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesLesGrandesVentes = new ol.source.Vector({ features: featuresPrescriptionsponctuellesLesGrandesVentes });
+
+var featuresPrescriptionsponctuellesMaucomble = format.readFeatures(json_PrescriptionsponctuellesMaucomble, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesMaucomble = new ol.source.Vector({ features: featuresPrescriptionsponctuellesMaucomble });
+
+var featuresPrescriptionsponctuellesOsmoySaintValry = format.readFeatures(json_PrescriptionsponctuellesOsmoySaintValry, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesOsmoySaintValry = new ol.source.Vector({ features: featuresPrescriptionsponctuellesOsmoySaintValry });
+
+var featuresPrescriptionsponctuellesSaintLucien = format.readFeatures(json_PrescriptionsponctuellesSaintLucien, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesSaintLucien = new ol.source.Vector({ features: featuresPrescriptionsponctuellesSaintLucien });
+
+var featuresPrescriptionsponctuellesSaintSans = format.readFeatures(json_PrescriptionsponctuellesSaintSans, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesSaintSans = new ol.source.Vector({ features: featuresPrescriptionsponctuellesSaintSans });
+
+var featuresPrescriptionsponctuellesSigyenBray = format.readFeatures(json_PrescriptionsponctuellesSigyenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionsponctuellesSigyenBray = new ol.source.Vector({ features: featuresPrescriptionsponctuellesSigyenBray });
+
+var featuresPrescriptionssurfaciques1ForgeslesEaux = format.readFeatures(json_Prescriptionssurfaciques1ForgeslesEaux, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciques1ForgeslesEaux = new ol.source.Vector({ features: featuresPrescriptionssurfaciques1ForgeslesEaux });
+
+var featuresPrescriptionssurfaciques1Maucomble = format.readFeatures(json_Prescriptionssurfaciques1Maucomble, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciques1Maucomble = new ol.source.Vector({ features: featuresPrescriptionssurfaciques1Maucomble });
+
+var featuresPrescriptionssurfaciques2ForgeslesEaux = format.readFeatures(json_Prescriptionssurfaciques2ForgeslesEaux, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciques2ForgeslesEaux = new ol.source.Vector({ features: featuresPrescriptionssurfaciques2ForgeslesEaux });
+
+var featuresPrescriptionssurfaciques2Maucomble = format.readFeatures(json_Prescriptionssurfaciques2Maucomble, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciques2Maucomble = new ol.source.Vector({ features: featuresPrescriptionssurfaciques2Maucomble });
+
+var featuresPrescriptionssurfaciquesBrmontierMerval = format.readFeatures(json_PrescriptionssurfaciquesBrmontierMerval, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesBrmontierMerval = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesBrmontierMerval });
+
+var featuresPrescriptionssurfaciquesBzancourt = format.readFeatures(json_PrescriptionssurfaciquesBzancourt, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesBzancourt = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesBzancourt });
+
+var featuresPrescriptionssurfaciquesCritot = format.readFeatures(json_PrescriptionssurfaciquesCritot, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesCritot = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesCritot });
+
+var featuresPrescriptionssurfaciquesFerriresenBray = format.readFeatures(json_PrescriptionssurfaciquesFerriresenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesFerriresenBray = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesFerriresenBray });
+
+var featuresPrescriptionssurfaciquesGournayenBray = format.readFeatures(json_PrescriptionssurfaciquesGournayenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesGournayenBray = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesGournayenBray });
+
+var featuresPrescriptionssurfaciquesLaFeuillie = format.readFeatures(json_PrescriptionssurfaciquesLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesLaFeuillie = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesLaFeuillie });
+
+var featuresPrescriptionssurfaciquesLesGrandesVentes = format.readFeatures(json_PrescriptionssurfaciquesLesGrandesVentes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesLesGrandesVentes = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesLesGrandesVentes });
+
+var featuresPrescriptionssurfaciquesOsmoySaintValry = format.readFeatures(json_PrescriptionssurfaciquesOsmoySaintValry, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesOsmoySaintValry = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesOsmoySaintValry });
+
+var featuresPrescriptionssurfaciquesRocquemont = format.readFeatures(json_PrescriptionssurfaciquesRocquemont, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesRocquemont = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesRocquemont });
+
+var featuresPrescriptionssurfaciquesSaintLucien = format.readFeatures(json_PrescriptionssurfaciquesSaintLucien, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesSaintLucien = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesSaintLucien });
+
+var featuresPrescriptionssurfaciquesSaintSans = format.readFeatures(json_PrescriptionssurfaciquesSaintSans, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesSaintSans = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesSaintSans });
+
+var featuresPrescriptionssurfaciquesSigyenBray = format.readFeatures(json_PrescriptionssurfaciquesSigyenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrescriptionssurfaciquesSigyenBray = new ol.source.Vector({ features: featuresPrescriptionssurfaciquesSigyenBray });
+
+var featuresPrimtredeprotectionincendie100mLaFeuillie = format.readFeatures(json_Primtredeprotectionincendie100mLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrimtredeprotectionincendie100mLaFeuillie = new ol.source.Vector({ features: featuresPrimtredeprotectionincendie100mLaFeuillie });
+
+var featuresPrimtredeprotectionincendie15mLaFeuillie = format.readFeatures(json_Primtredeprotectionincendie15mLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrimtredeprotectionincendie15mLaFeuillie = new ol.source.Vector({ features: featuresPrimtredeprotectionincendie15mLaFeuillie });
+
+var featuresPrimtresdeprotectiondecaptageSaintSans = format.readFeatures(json_PrimtresdeprotectiondecaptageSaintSans, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrimtresdeprotectiondecaptageSaintSans = new ol.source.Vector({ features: featuresPrimtresdeprotectiondecaptageSaintSans });
+
+var featuresPrimtresdeProtectionImmdiatsPPI = format.readFeatures(json_PrimtresdeProtectionImmdiatsPPI, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrimtresdeProtectionImmdiatsPPI = new ol.source.Vector({ features: featuresPrimtresdeProtectionImmdiatsPPI });
+
+var featuresPrimtresdeProtectionloignsPPE = format.readFeatures(json_PrimtresdeProtectionloignsPPE, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrimtresdeProtectionloignsPPE = new ol.source.Vector({ features: featuresPrimtresdeProtectionloignsPPE });
+
+var featuresPrimtresdeProtectionRapprochsPPR = format.readFeatures(json_PrimtresdeProtectionRapprochsPPR, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrimtresdeProtectionRapprochsPPR = new ol.source.Vector({ features: featuresPrimtresdeProtectionRapprochsPPR });
+
+var featuresPrimtresMonumentsHistoriques = format.readFeatures(json_PrimtresMonumentsHistoriques, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePrimtresMonumentsHistoriques = new ol.source.Vector({ features: featuresPrimtresMonumentsHistoriques });
+
+var featuresPylne = format.readFeatures(json_Pylne, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourcePylne = new ol.source.Vector({ features: featuresPylne });
+
+var featuresRemontesdenappes = format.readFeatures(json_Remontesdenappes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceRemontesdenappes = new ol.source.Vector({ features: featuresRemontesdenappes });
+
+var featuresRoutesdeGrandeCirculation = format.readFeatures(json_RoutesdeGrandeCirculation, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceRoutesdeGrandeCirculation = new ol.source.Vector({ features: featuresRoutesdeGrandeCirculation });
+
+var featuresRoutesnumrotesounommes = format.readFeatures(json_Routesnumrotesounommes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceRoutesnumrotesounommes = new ol.source.Vector({ features: featuresRoutesnumrotesounommes });
+
+var featuresRservoir = format.readFeatures(json_Rservoir, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceRservoir = new ol.source.Vector({ features: featuresRservoir });
+
+var featuresRuissellement = format.readFeatures(json_Ruissellement, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceRuissellement = new ol.source.Vector({ features: featuresRuissellement });
+
+var featuresRuissellementForgeslesEaux = format.readFeatures(json_RuissellementForgeslesEaux, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceRuissellementForgeslesEaux = new ol.source.Vector({ features: featuresRuissellementForgeslesEaux });
+
+var featuresRuissellementSaintSans = format.readFeatures(json_RuissellementSaintSans, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceRuissellementSaintSans = new ol.source.Vector({ features: featuresRuissellementSaintSans });
+
+var featuresSecteurs = format.readFeatures(json_Secteurs, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteurs = new ol.source.Vector({ features: featuresSecteurs });
+
+var featuresSecteursBoscMesnil = format.readFeatures(json_SecteursBoscMesnil, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursBoscMesnil = new ol.source.Vector({ features: featuresSecteursBoscMesnil });
+
+var featuresSecteursBouelles = format.readFeatures(json_SecteursBouelles, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursBouelles = new ol.source.Vector({ features: featuresSecteursBouelles });
+
+var featuresSecteursBrmontierMerval = format.readFeatures(json_SecteursBrmontierMerval, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursBrmontierMerval = new ol.source.Vector({ features: featuresSecteursBrmontierMerval });
+
+var featuresSecteursBzancourt = format.readFeatures(json_SecteursBzancourt, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursBzancourt = new ol.source.Vector({ features: featuresSecteursBzancourt });
+
+var featuresSecteursCallengeville = format.readFeatures(json_SecteursCallengeville, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursCallengeville = new ol.source.Vector({ features: featuresSecteursCallengeville });
+
+var featuresSecteursCodessecteursEsclavelles = format.readFeatures(json_SecteursCodessecteursEsclavelles, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursCodessecteursEsclavelles = new ol.source.Vector({ features: featuresSecteursCodessecteursEsclavelles });
+
+var featuresSecteursCompainville = format.readFeatures(json_SecteursCompainville, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursCompainville = new ol.source.Vector({ features: featuresSecteursCompainville });
+
+var featuresSecteursCritot = format.readFeatures(json_SecteursCritot, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursCritot = new ol.source.Vector({ features: featuresSecteursCritot });
+
+var featuresSecteursCuySaintFiacre = format.readFeatures(json_SecteursCuySaintFiacre, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursCuySaintFiacre = new ol.source.Vector({ features: featuresSecteursCuySaintFiacre });
+
+var featuresSecteursDampierreenBray = format.readFeatures(json_SecteursDampierreenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursDampierreenBray = new ol.source.Vector({ features: featuresSecteursDampierreenBray });
+
+var featuresSecteursElbeufenBray = format.readFeatures(json_SecteursElbeufenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursElbeufenBray = new ol.source.Vector({ features: featuresSecteursElbeufenBray });
+
+var featuresSecteursErnemontlaVillette = format.readFeatures(json_SecteursErnemontlaVillette, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursErnemontlaVillette = new ol.source.Vector({ features: featuresSecteursErnemontlaVillette });
+
+var featuresSecteursFerriresenBray = format.readFeatures(json_SecteursFerriresenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursFerriresenBray = new ol.source.Vector({ features: featuresSecteursFerriresenBray });
+
+var featuresSecteursFesques = format.readFeatures(json_SecteursFesques, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursFesques = new ol.source.Vector({ features: featuresSecteursFesques });
+
+var featuresSecteursForgeslesEaux = format.readFeatures(json_SecteursForgeslesEaux, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursForgeslesEaux = new ol.source.Vector({ features: featuresSecteursForgeslesEaux });
+
+var featuresSecteursFry = format.readFeatures(json_SecteursFry, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursFry = new ol.source.Vector({ features: featuresSecteursFry });
+
+var featuresSecteursGaillefontaine = format.readFeatures(json_SecteursGaillefontaine, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursGaillefontaine = new ol.source.Vector({ features: featuresSecteursGaillefontaine });
+
+var featuresSecteursGournayenBray = format.readFeatures(json_SecteursGournayenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursGournayenBray = new ol.source.Vector({ features: featuresSecteursGournayenBray });
+
+var featuresSecteursLaFeuillie = format.readFeatures(json_SecteursLaFeuillie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursLaFeuillie = new ol.source.Vector({ features: featuresSecteursLaFeuillie });
+
+var featuresSecteursLesGrandesVentes = format.readFeatures(json_SecteursLesGrandesVentes, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursLesGrandesVentes = new ol.source.Vector({ features: featuresSecteursLesGrandesVentes });
+
+var featuresSecteursMassy = format.readFeatures(json_SecteursMassy, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursMassy = new ol.source.Vector({ features: featuresSecteursMassy });
+
+var featuresSecteursMathonville = format.readFeatures(json_SecteursMathonville, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursMathonville = new ol.source.Vector({ features: featuresSecteursMathonville });
+
+var featuresSecteursMaucomble = format.readFeatures(json_SecteursMaucomble, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursMaucomble = new ol.source.Vector({ features: featuresSecteursMaucomble });
+
+var featuresSecteursMolagnies = format.readFeatures(json_SecteursMolagnies, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursMolagnies = new ol.source.Vector({ features: featuresSecteursMolagnies });
+
+var featuresSecteursMontrolier = format.readFeatures(json_SecteursMontrolier, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursMontrolier = new ol.source.Vector({ features: featuresSecteursMontrolier });
+
+var featuresSecteursMontroty = format.readFeatures(json_SecteursMontroty, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursMontroty = new ol.source.Vector({ features: featuresSecteursMontroty });
+
+var featuresSecteursMsangueville = format.readFeatures(json_SecteursMsangueville, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursMsangueville = new ol.source.Vector({ features: featuresSecteursMsangueville });
+
+var featuresSecteursNesleHodeng = format.readFeatures(json_SecteursNesleHodeng, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursNesleHodeng = new ol.source.Vector({ features: featuresSecteursNesleHodeng });
+
+var featuresSecteursNeufMarch = format.readFeatures(json_SecteursNeufMarch, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursNeufMarch = new ol.source.Vector({ features: featuresSecteursNeufMarch });
+
+var featuresSecteursOsmoySaintValry = format.readFeatures(json_SecteursOsmoySaintValry, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursOsmoySaintValry = new ol.source.Vector({ features: featuresSecteursOsmoySaintValry });
+
+var featuresSecteursRocquemont = format.readFeatures(json_SecteursRocquemont, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursRocquemont = new ol.source.Vector({ features: featuresSecteursRocquemont });
+
+var featuresSecteursRosay = format.readFeatures(json_SecteursRosay, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursRosay = new ol.source.Vector({ features: featuresSecteursRosay });
+
+var featuresSecteursSainteGenevive = format.readFeatures(json_SecteursSainteGenevive, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursSainteGenevive = new ol.source.Vector({ features: featuresSecteursSainteGenevive });
+
+var featuresSecteursSaintGermainsurEaulne = format.readFeatures(json_SecteursSaintGermainsurEaulne, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursSaintGermainsurEaulne = new ol.source.Vector({ features: featuresSecteursSaintGermainsurEaulne });
+
+var featuresSecteursSaintLucien = format.readFeatures(json_SecteursSaintLucien, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursSaintLucien = new ol.source.Vector({ features: featuresSecteursSaintLucien });
+
+var featuresSecteursSaintSaire = format.readFeatures(json_SecteursSaintSaire, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursSaintSaire = new ol.source.Vector({ features: featuresSecteursSaintSaire });
+
+var featuresSecteursSaintSans = format.readFeatures(json_SecteursSaintSans, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursSaintSans = new ol.source.Vector({ features: featuresSecteursSaintSans });
+
+var featuresSecteursSigyenBray = format.readFeatures(json_SecteursSigyenBray, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursSigyenBray = new ol.source.Vector({ features: featuresSecteursSigyenBray });
+
+var featuresSecteursSommery = format.readFeatures(json_SecteursSommery, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSecteursSommery = new ol.source.Vector({ features: featuresSecteursSommery });
+
+var featuresSitesBASOL = format.readFeatures(json_SitesBASOL, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSitesBASOL = new ol.source.Vector({ features: featuresSitesBASOL });
+
+var featuresSitesclasss = format.readFeatures(json_Sitesclasss, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSitesclasss = new ol.source.Vector({ features: featuresSitesclasss });
+
+var featuresSitesinscrits = format.readFeatures(json_Sitesinscrits, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSitesinscrits = new ol.source.Vector({ features: featuresSitesinscrits });
+
+var featuresSitespollus = format.readFeatures(json_Sitespollus, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSitespollus = new ol.source.Vector({ features: featuresSitespollus });
+
+var featuresSPR = format.readFeatures(json_SPR, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSPR = new ol.source.Vector({ features: featuresSPR });
+
+var featuresSurfaceshydrographiques = format.readFeatures(json_Surfaceshydrographiques, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceSurfaceshydrographiques = new ol.source.Vector({ features: featuresSurfaceshydrographiques });
+
+var featuresTerraindesport = format.readFeatures(json_Terraindesport, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceTerraindesport = new ol.source.Vector({ features: featuresTerraindesport });
+
+var featuresToponymiehydrographie = format.readFeatures(json_Toponymiehydrographie, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceToponymiehydrographie = new ol.source.Vector({ features: featuresToponymiehydrographie });
+
+var featuresTrononshydrographiques = format.readFeatures(json_Trononshydrographiques, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceTrononshydrographiques = new ol.source.Vector({ features: featuresTrononshydrographiques });
+
+var featuresVoieferre = format.readFeatures(json_Voieferre, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceVoieferre = new ol.source.Vector({ features: featuresVoieferre });
+
+
+var featuresZoneArchologiqueGournayenBrayZone1 = format.readFeatures(json_ZoneArchologiqueGournayenBrayZone1, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceZoneArchologiqueGournayenBrayZone1 = new ol.source.Vector({ features: featuresZoneArchologiqueGournayenBrayZone1 });
+
+var featuresZoneArchologiqueGournayenBrayZone2 = format.readFeatures(json_ZoneArchologiqueGournayenBrayZone2, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceZoneArchologiqueGournayenBrayZone2 = new ol.source.Vector({ features: featuresZoneArchologiqueGournayenBrayZone2 });
+
+var featuresZonedactivitetdeservice = format.readFeatures(json_Zonedactivitetdeservice, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceZonedactivitetdeservice = new ol.source.Vector({ features: featuresZonedactivitetdeservice });
+
+var featuresZonesarchologiques = format.readFeatures(json_Zonesarchologiques, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceZonesarchologiques = new ol.source.Vector({ features: featuresZonesarchologiques });
+
+var featuresZonesdalas = format.readFeatures(json_Zonesdalas, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceZonesdalas = new ol.source.Vector({ features: featuresZonesdalas });
+
+var featuresZoneshumides = format.readFeatures(json_Zoneshumides, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceZoneshumides = new ol.source.Vector({ features: featuresZoneshumides });
+
+var featuresZonesrglementaires = format.readFeatures(json_Zonesrglementaires, {
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+var sourceZonesrglementaires = new ol.source.Vector({ features: featuresZonesrglementaires });
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  // Stockage de la parcelle sélectionnée
+  let parcelleSelectionnee = null;
+
+  function rechercherParcelle(code) {
+    return sourceParcelles.getFeatures().find(f => f.get('sect_code') === code);
+  }
+
+  function afficherParcelle(feature) {
+    const container = document.getElementById('fiche-content');
+    if (!feature) {
+      container.innerHTML = '<p>Aucune parcelle trouvée.</p>';
+      document.getElementById('intersect-btn').disabled = true;
+      parcelleSelectionnee = null;
+      return;
+    }
+    parcelleSelectionnee = feature;
+    let html = '<strong>Parcelle trouvée :</strong><ul>';
+    for (const key in feature.getProperties()) {
+      if (key !== 'geometry') {
+        html += `<li>${key} : ${feature.get(key)}</li>`;
+      }
+    }
+    html += '</ul>';
+    container.innerHTML = html;
+    document.getElementById('intersect-btn').disabled = false; // activation du bouton
+  }
+
+ 
+  // Événements
+  document.getElementById('search-btn').addEventListener('click', () => {
+    let code = document.getElementById('search-input').value.trim();
+    if (!code) return;
+    const parcelle = rechercherParcelle(code);
+    afficherParcelle(parcelle);
+  });
+  
+  
+  const { jsPDF } = window.jspdf; // récupère jsPDF depuis la librairie
+
+let zonesIntersectees = []; // déclarée globalement pour export
+
+function verifierIntersections() {
+  if (!parcelleSelectionnee) return;
+
+  const parcelleGeoJSON = format.writeFeatureObject(parcelleSelectionnee);
+
+  zonesIntersectees = []; // reset
+
+  function checkSource(source, nomCouche) {
+    source.getFeatures().forEach(zone => {
+      const zoneGeoJSON = format.writeFeatureObject(zone);
+      if (turf.booleanIntersects(parcelleGeoJSON, zoneGeoJSON)) {
+        zonesIntersectees.push({ couche: nomCouche, nom: zone.get('nom') || zone.get('NOM') || zone.get('LIBELLE') || zone.get('libelle') || 'élément détecté sans précision apportée' });
+      }
+    });
+  }
+
+  checkSource(sourceNatura2000, 'Natura 2000');
+  checkSource(sourceZNIEFF, 'ZNIEFF type 1');
+  checkSource(sourceZNIEFF2, 'ZNIEFF type 2');
+  
+checkSource(sourceAutresitinraires, 'Autres itinéraires');
+checkSource(sourceBoisElbeufenBray, 'Bois Elbeuf-en-Bray');
+checkSource(sourceBoisprotgsRosay, 'Bois protégés Rosay'); 
+<!-- checkSource(sourceBtiagricoleLaFeuillie, 'Bâti agricole (Enquête agricole La Feuillie)'; 
+<!-- checkSource(sourceBtiagricoleLesGrandesVentes, 'Bâti agricole (Enquête agricole Les Grandes-Ventes)'; 
+checkSource(sourceCanalisationsgazGRDF, 'Canalisations gaz GRDF');
+checkSource(sourceCanalisationsgazGRT, 'Canalisations gaz GRT');
+<!-- checkSource(sourceCCBrayEawy, 'CCBray Eawy'); -->
+<!-- checkSource(sourceCCdeLondinieres, 'CCde Londinieres'); -->
+<!-- checkSource(sourceCCdes4Rivires, 'CCdes4Rivires'); -->
+checkSource(sourceCimetire, 'Cimetière');
+ checkSource(sourceClassementsonoreRDVC, 'Classement sonore RDVC');
+ checkSource(sourceClassementsonoreRDVCfuseau, 'Classement sonore RDVC fuseau'); 
+ checkSource(sourceClassementsonoreRF, 'Classement sonore RF');
+checkSource(sourceClassementsonoreRFfuseau, 'Classementsonore RF fuseau'); 
+checkSource(sourceClassementsonoreRRN, 'Classement sonore RRN');
+checkSource(sourceClassementsonoreRRNfuseau, 'Classement sonore RRN fuseau'); 
+checkSource(sourceCommunes, 'Commune');
+<!-- checkSource(sourceCommunesassociesoudlgues, 'Communesassociesoudlgues'); -->
+ checkSource(sourceConstructionsponctuelles, 'Constructions ponctuelles'); 
+checkSource(sourceCorpsdefermeLaFeuillie, 'Corps de ferme La Feuillie'); 
+
+checkSource(sourceCorpsdefermeLesGrandesVentes, 'Corps de ferme Les Grandes-Ventes');
+checkSource(sourceDistancedereculautourdubtiLaFeuillie, 'Distance de recul autour du bâti La Feuillie');
+checkSource(sourceDistancedereculautourdubtiLesGrandesVentes, 'Distance de recul autour du bâti Les Grandes-Ventes');
+checkSource(sourceDroitdePremptionCuySaintFiacre, 'Droit de Préemption Cuy-Saint-Fiacre');
+checkSource(sourceDroitdepremptionDampierreenBray, 'Droit de préemption Dampierre-en-Bray');
+checkSource(sourceDroitdePremptionurbainCritot, 'Droit de Préemption urbain Critot');
+checkSource(sourceDtailshydrographiques, 'Dtails hydrographiques');
+checkSource(sourceERP, 'Établissements Recevant du Public (ERP)');
+checkSource(sourceEspaceboisclassErnemontlaVillette, 'Espace boisés classés Ernemont-la-Villette');
+checkSource(sourceFortspubliques, 'Forêts publiques');
+checkSource(sourceHaies, 'Haies');
+checkSource(sourceICPE, 'ICPE');
+checkSource(sourceIndiffrenci, 'Bâti indifférencié');
+checkSource(sourceIndustrielagricoleoucommercial, 'Bâti industriel, agricole ou commercial');
+checkSource(sourceLignesbassetensionariennesENEDIS, 'Lignes basse tension aériennes ENEDIS');
+checkSource(sourceLignesbassetensionsouterrainesENEDIS, 'Lignes basse tension souterraines ENEDIS');
+checkSource(sourceLigneshautetensionariennesENEDIS, 'Lignes haute tension aériennes ENEDIS');
+checkSource(sourceLigneshautetensionRTE, 'Lignes haute tension RTE');
+checkSource(sourceLigneshautetensionsouterrainesENEDIS, 'Lignes haute tension souterraines ENEDIS');
+checkSource(sourceLotissements, 'Lotissements');
+checkSource(sourcelotsanonymesPACLaFeuillie, 'Îots anonymes PAC La Feuillie');
+checkSource(sourceMaresPRAM, 'Mare');
+checkSource(sourceMonument, 'Monument');
+checkSource(sourceMonumentshistoriques, 'Monument historique');
+checkSource(sourceNiveaudurisque, 'Risque de remontée de nappes');
+
+checkSource(sourcePostesdetransformation, 'Postes de transformation électrique');
+checkSource(sourcePrescriptionslinaireMaucomble, 'Prescriptions linéaire Maucomble');
+checkSource(sourcePrescriptionslinairesBrmontierMerval, 'Prescriptions linéaires Brémontier-Merval');
+checkSource(sourcePrescriptionslinairesBzancourt, 'Prescriptions linaéires Bézancourt');
+checkSource(sourcePrescriptionslinairesFerriresenBray, 'Prescriptions lin"aires Ferrières-en-Bray');
+checkSource(sourcePrescriptionslinairesForgeslesEaux, 'Prescriptions linéaires Forges-les-Eaux');
+checkSource(sourcePrescriptionslinairesGournayenBray, 'Prescriptions linéaires Gournay-en-Bray');
+checkSource(sourcePrescriptionslinairesLaFeuillie, 'Prescriptions linéaires La Feuillie');
+checkSource(sourcePrescriptionslinairesLesGrandesVentes, 'Prescriptions linaéires Les Grandes-Ventes');
+checkSource(sourcePrescriptionslinairesOsmoySaintValry, 'Prescriptions linéaires Osmoy-Saint-Valéry');
+checkSource(sourcePrescriptionslinairesSaintLucien, 'Prescriptions liénaires Saint-Lucien');
+checkSource(sourcePrescriptionslinairesSaintSans, 'Prescriptions linéaires Saint-Saëns');
+checkSource(sourcePrescriptionslinairesSigyenBray, 'Prescriptions linéaires Sigy-en-Bray');
+checkSource(sourcePrescriptionsponctuellesBrmontierMerval, 'Prescriptions ponctuelles Brémontier-Merval');
+checkSource(sourcePrescriptionsponctuellesBzancourt, 'Prescriptions ponctuelles Bzancourt');
+checkSource(sourcePrescriptionsponctuellesCritot, 'Prescriptions ponctuelles Critot');
+checkSource(sourcePrescriptionsponctuellesFerriresenBray, 'Prescriptions ponctuelles Ferrires-en-Bray');
+checkSource(sourcePrescriptionsponctuellesForgeslesEaux, 'Prescriptions ponctuelles Forges-les-Eaux');
+checkSource(sourcePrescriptionsponctuellesGournayenBray, 'Prescriptions ponctuelles Gournay-en-Bray');
+checkSource(sourcePrescriptionsponctuellesLaFeuillie, 'Prescriptionsponctuelles La Feuillie');
+checkSource(sourcePrescriptionsponctuellesLesGrandesVentes, 'Prescriptions ponctuelles Les-Grandes-Ventes');
+checkSource(sourcePrescriptionsponctuellesMaucomble, 'Prescriptions ponctuelles Maucomble');
+checkSource(sourcePrescriptionsponctuellesOsmoySaintValry, 'Prescriptions ponctuelles Osmoy-Saint-Valéry');
+checkSource(sourcePrescriptionsponctuellesSaintLucien, 'Prescriptions ponctuelles Saint Lucien');
+checkSource(sourcePrescriptionsponctuellesSaintSans, 'Prescriptionsponctuelles Saint Sans');
+checkSource(sourcePrescriptionsponctuellesSigyenBray, 'Prescriptionsponctuelles Sigyen Bray');
+checkSource(sourcePrescriptionssurfaciques1ForgeslesEaux, 'Prescriptions surfaciques Forges-les-Eaux');
+checkSource(sourcePrescriptionssurfaciques1Maucomble, 'Prescriptions surfaciques Maucomble');
+checkSource(sourcePrescriptionssurfaciques2ForgeslesEaux, 'Prescriptions surfaciques Forges-les-Eaux');
+checkSource(sourcePrescriptionssurfaciques2Maucomble, 'Prescriptions surfacique Maucomble');
+checkSource(sourcePrescriptionssurfaciquesBrmontierMerval, 'Prescriptions surfaciques Brmontier-Merval');
+
+checkSource(sourcePrescriptionssurfaciquesBzancourt, 'Prescriptions surfaciques Bézancourt');
+checkSource(sourcePrescriptionssurfaciquesCritot, 'Prescriptions surfaciques Critot');
+checkSource(sourcePrescriptionssurfaciquesFerriresenBray, 'Prescriptions surfaciques Ferrières-en-Bray');
+checkSource(sourcePrescriptionssurfaciquesGournayenBray, 'Prescriptions surfaciques Gournay-en-Bray');
+checkSource(sourcePrescriptionssurfaciquesLaFeuillie, 'Prescriptions surfaciques La Feuillie');
+checkSource(sourcePrescriptionssurfaciquesLesGrandesVentes, 'Prescriptions surfaciques Les Grandes-Ventes');
+checkSource(sourcePrescriptionssurfaciquesOsmoySaintValry, 'Prescriptions surfaciques Osmoy-Saint-Valéry');
+checkSource(sourcePrescriptionssurfaciquesRocquemont, 'Prescriptions surfaciques Rocquemont');
+checkSource(sourcePrescriptionssurfaciquesSaintLucien, 'Prescriptions surfaciques Saint-Lucien');
+checkSource(sourcePrescriptionssurfaciquesSaintSans, 'Prescriptions surfaciques Saint-Saëns');
+checkSource(sourcePrescriptionssurfaciquesSigyenBray, 'Prescriptions surfaciques Sigy-en-Bray');
+
+checkSource(sourcePrimtredeprotectionincendie100mLaFeuillie, 'Périmètre de protection incendie 100m La Feuillie');
+checkSource(sourcePrimtredeprotectionincendie15mLaFeuillie, 'Périmètre de protection incendie 15m La Feuillie');
+checkSource(sourcePrimtresdeprotectiondecaptageSaintSans, 'Périmètre de protection de captage Saint-Saëns');
+checkSource(sourcePrimtresdeProtectionImmdiatsPPI, 'Périmètre de Protection Immédiats PPI');
+checkSource(sourcePrimtresdeProtectionloignsPPE, 'Périmètre de Protection Éloigné PPE');
+checkSource(sourcePrimtresdeProtectionRapprochsPPR, 'Périmètre de Protection Rapproché PPR');
+checkSource(sourcePrimtresMonumentsHistoriques, 'Périmètre Monuments Historiques');
+
+checkSource(sourcePylne, 'Pylône électrique');
+checkSource(sourceRemontesdenappes, 'Remontées de nappes');
+checkSource(sourceRoutesdeGrandeCirculation, 'Routes de Grande Circulation');
+checkSource(sourceRoutesnumrotesounommes, 'Routes numrotées ou nommées');
+checkSource(sourceRservoir, 'Réservoir');
+checkSource(sourceRuissellement, 'Ruissellement');
+checkSource(sourceRuissellementForgeslesEaux, 'Ruissellement Forges-les-Eaux');
+checkSource(sourceRuissellementSaintSans, 'Ruissellement Saint-Saëns');
+checkSource(sourceSecteurs, 'Secteurs');
+checkSource(sourceSecteursBoscMesnil, 'Secteurs Bosc-Mesnil');
+checkSource(sourceSecteursBouelles, 'Secteurs Bouelles');
+checkSource(sourceSecteursBrmontierMerval, 'Secteurs Brémontier-Merval');
+checkSource(sourceSecteursBzancourt, 'Secteurs Bézancourt');
+checkSource(sourceSecteursCallengeville, 'Secteurs Callengeville');
+checkSource(sourceSecteursCodessecteursEsclavelles, 'Secteurs Esclavelles');
+checkSource(sourceSecteursCompainville, 'Secteurs Compainville');
+checkSource(sourceSecteursCritot, 'Secteurs Critot');
+checkSource(sourceSecteursCuySaintFiacre, 'Secteurs Cuy-Saint-Fiacre');
+checkSource(sourceSecteursDampierreenBray, 'Secteurs Dampierre-en-Bray');
+checkSource(sourceSecteursElbeufenBray, 'Secteurs Elbeuf-en-Bray');
+checkSource(sourceSecteursErnemontlaVillette, 'Secteurs Ernemont-la-Villette');
+checkSource(sourceSecteursFerriresenBray, 'Secteurs Ferrières-en-Bray');
+checkSource(sourceSecteursFesques, 'Secteurs Fesques');
+checkSource(sourceSecteursForgeslesEaux, 'Secteurs Forges-les-Eaux');
+checkSource(sourceSecteursFry, 'Secteurs Fry');
+checkSource(sourceSecteursGaillefontaine, 'Secteurs Gaillefontaine');
+checkSource(sourceSecteursGournayenBray, 'Secteurs Gournay-en-Bray');
+checkSource(sourceSecteursLaFeuillie, 'Secteurs La Feuillie');
+checkSource(sourceSecteursLesGrandesVentes, 'Secteurs Les Grandes-Ventes');
+checkSource(sourceSecteursMassy, 'Secteurs Massy');
+checkSource(sourceSecteursMathonville, 'Secteurs Mathonville');
+checkSource(sourceSecteursMaucomble, 'Secteurs Maucomble');
+checkSource(sourceSecteursMolagnies, 'Secteurs Molagnies');
+checkSource(sourceSecteursMontrolier, 'Secteurs Montrolier');
+checkSource(sourceSecteursMontroty, 'Secteurs Montroty');
+checkSource(sourceSecteursMsangueville, 'Secteurs Mésangueville');
+checkSource(sourceSecteursNesleHodeng, 'Secteurs Nesle Hodeng');
+checkSource(sourceSecteursNeufMarch, 'Secteurs Neuf-Marché');
+checkSource(sourceSecteursOsmoySaintValry, 'Secteurs Osmoy-Saint-Valéry');
+checkSource(sourceSecteursRocquemont, 'Secteurs Rocquemont');
+checkSource(sourceSecteursRosay, 'Secteurs Rosay');
+checkSource(sourceSecteursSainteGenevive, 'Secteurs Sainte-Geneviève');
+checkSource(sourceSecteursSaintGermainsurEaulne, 'Secteurs Saint-Germain-sur-Eaulne');
+checkSource(sourceSecteursSaintLucien, 'Secteurs Saint-Lucien');
+checkSource(sourceSecteursSaintSaire, 'Secteurs Saint-Saire');
+checkSource(sourceSecteursSaintSans, 'Secteurs Saint-Saëns');
+checkSource(sourceSecteursSigyenBray, 'Secteurs Sigy-en-Bray');
+checkSource(sourceSecteursSommery, 'Secteurs Sommery');
+checkSource(sourceSitesBASOL, 'Sites BASOL');
+checkSource(sourceSitesclasss, 'Sites classés');
+checkSource(sourceSitesinscrits, 'Sites inscrits');
+checkSource(sourceSitespollus, 'Sites pollués');
+checkSource(sourceSPR, 'SPR');
+checkSource(sourceSurfaceshydrographiques, 'Surfaces hydrographiques');
+checkSource(sourceTerraindesport, 'Terrain de sport');
+checkSource(sourceTrononshydrographiques, 'Tronons hydrographiques');
+checkSource(sourceVoieferre, 'Voie ferrée');
+checkSource(sourceZoneArchologiqueGournayenBrayZone1, 'Zone Archéologique Gournay-en-Bray Zone 1');
+checkSource(sourceZoneArchologiqueGournayenBrayZone2, 'Zone Archéologique Gournay-en-Bray Zone 2');
+checkSource(sourceZonedactivitetdeservice, 'Zone d&apos;activité et de service');
+checkSource(sourceZonesarchologiques, 'Zones archéologiques');
+checkSource(sourceZonesdalas, 'Zones d&apos;aléas');
+checkSource(sourceZoneshumides, 'Zones humides');
+checkSource(sourceZonesrglementaires, 'Zones réglementaires');
+
+  // Affichage résultat
+  let html = '<strong>Parcelle :</strong><ul>';
+  for (const key in parcelleSelectionnee.getProperties()) {
+    if (key !== 'geometry') {
+      html += `<li>${key} : ${parcelleSelectionnee.get(key)}</li>`;
+    }
+  }
+  html += '</ul><strong>Zones intersectées :</strong><ul>';
+
+  if (zonesIntersectees.length) {
+    zonesIntersectees.forEach(z => {
+      html += `<li><b>${z.couche}</b> : ${z.nom}</li>`;
+    });
+  } else {
+    html += '<li>Aucune zone intersectée</li>';
+  }
+  html += '</ul>';
+
+  document.getElementById('fiche-content').innerHTML = html;
+
+  // Activation du bouton export
+  document.getElementById('export-pdf-btn').disabled = false;
+}
+
+function exportToPDF() {
+  if (!parcelleSelectionnee) return alert("Aucune parcelle sélectionnée");
+
+  const doc = new jsPDF();
+  let y = 10;
+
+  doc.setFontSize(14);
+  doc.text("Fiche Parcelle", 10, y);
+  y += 10;
+
+  // Parcelle
+  doc.setFontSize(12);
+  doc.text("Parcelle :", 10, y);
+  y += 8;
+  for (const key in parcelleSelectionnee.getProperties()) {
+    if (key !== "geometry") {
+      const line = `${key} : ${parcelleSelectionnee.get(key)}`;
+      doc.text(line, 10, y);
+      y += 7;
+    }
+  }
+  y += 5;
+
+  // Zones intersectées
+  doc.text("Zones intersectées :", 10, y);
+  y += 8;
+
+  if (zonesIntersectees.length) {
+    zonesIntersectees.forEach(z => {
+      const line = `${z.couche} : ${z.nom}`;
+      doc.text(line, 10, y);
+      y += 7;
+    });
+  } else {
+    doc.text("Aucune zone intersectée", 10, y);
+  }
+
+  doc.save(`fiche_parcelle_${parcelleSelectionnee.get('sect_code')}.pdf`);
+}
+
+// Événements
+document.getElementById('search-btn').addEventListener('click', () => {
+  let code = document.getElementById('search-input').value.trim();
+  if (!code) return;
+  const parcelle = rechercherParcelle(code);
+  afficherParcelle(parcelle);
+  document.getElementById('export-pdf-btn').disabled = true; // désactive l'export au nouveau search
+});
+
+document.getElementById('intersect-btn').addEventListener('click', verifierIntersections);
+
+document.getElementById('export-pdf-btn').addEventListener('click', exportToPDF);
+
+
+  document.getElementById('intersect-btn').addEventListener('click', verifierIntersections);
+</script>
+
+</body>
+</html>

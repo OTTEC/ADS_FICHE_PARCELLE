@@ -271,14 +271,20 @@
 
 </head>
 <body>
-  <h3>Recherche Parcelle</h3>
+  <h3>Rechercher une parcelle</h3>
 
   <input type="text" id="search-input" placeholder="Ex: 76000 A123" />
   <button id="search-btn">Rechercher</button>
-    <button id="intersect-btn" disabled>Vérifier intersections</button>
+    <button id="intersect-btn" disabled>Vérifier les éléments</button>
 	<button id="export-pdf-btn" disabled>Exporter en PDF</button>
 
   <div id="fiche-content">Entrez un code parcelle et cliquez sur Rechercher</div>
+
+
+<div id="loader" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+background:white; padding:20px; border:1px solid #ccc; z-index:9999;">
+  ⏳ Vérification en cours...
+</div>
 
   <script>
 
@@ -1331,11 +1337,15 @@ var sourceZonesrglementaires = new ol.source.Vector({ features: featuresZonesrgl
     }
     parcelleSelectionnee = feature;
     let html = '<strong>Parcelle trouvée :</strong><ul>';
-    for (const key in feature.getProperties()) {
-      if (key !== 'geometry') {
-        html += `<li>${key} : ${feature.get(key)}</li>`;
-      }
-    }
+
+const champsAConserver = ['id', 'nom', 'commune', 'prefixe', 'section', 'numero']; // liste des champs souhaités
+
+for (const key of champsAConserver) {
+  const value = parcelleSelectionnee.get(key);
+  if (value !== undefined) {
+    html += `<li>${key} : ${value}</li>`;
+  }
+}
     html += '</ul>';
     container.innerHTML = html;
     document.getElementById('intersect-btn').disabled = false; // activation du bouton
@@ -1355,6 +1365,10 @@ var sourceZonesrglementaires = new ol.source.Vector({ features: featuresZonesrgl
 
 let zonesIntersectees = []; // déclarée globalement pour export
 
+
+
+
+
 function verifierIntersections() {
   if (!parcelleSelectionnee) return;
 
@@ -1366,10 +1380,13 @@ function verifierIntersections() {
     source.getFeatures().forEach(zone => {
       const zoneGeoJSON = format.writeFeatureObject(zone);
       if (turf.booleanIntersects(parcelleGeoJSON, zoneGeoJSON)) {
-        zonesIntersectees.push({ couche: nomCouche, nom: zone.get('nom') || zone.get('NOM') || zone.get('LIBELLE') || zone.get('libelle') || 'élément détecté sans précision apportée' });
+        zonesIntersectees.push({ couche: nomCouche, nom: zone.get('nom') || zone.get('NOM') ||  zone.get('NOMUSUEL') ||zone.get('Dossier') || zone.get('appelation') || zone.get('alea') || zone.get('NATURE') || zone.get('CLASSE') || zone.get('nom_ets') || zone.get('nom_site') || zone.get('nomsite') || zone.get('nom_instr') || zone.get('NOM_ZNIEFF')|| zone.get('SITENAME')|| zone.get('LIBELLE') || zone.get('USAGE1') || zone.get('libelle') || 'élément détecté sans précision apportée' });
       }
     });
   }
+
+
+checkSource(sourceCommunes, 'Commune');
 
   checkSource(sourceNatura2000, 'Natura 2000');
   checkSource(sourceZNIEFF, 'ZNIEFF type 1');
@@ -1392,7 +1409,6 @@ checkSource(sourceCimetire, 'Cimetière');
 checkSource(sourceClassementsonoreRFfuseau, 'Classementsonore RF fuseau'); 
 checkSource(sourceClassementsonoreRRN, 'Classement sonore RRN');
 checkSource(sourceClassementsonoreRRNfuseau, 'Classement sonore RRN fuseau'); 
-checkSource(sourceCommunes, 'Commune');
 <!-- checkSource(sourceCommunesassociesoudlgues, 'Communesassociesoudlgues'); -->
  checkSource(sourceConstructionsponctuelles, 'Constructions ponctuelles'); 
 checkSource(sourceCorpsdefermeLaFeuillie, 'Corps de ferme La Feuillie'); 
@@ -1421,7 +1437,7 @@ checkSource(sourcelotsanonymesPACLaFeuillie, 'Îots anonymes PAC La Feuillie');
 checkSource(sourceMaresPRAM, 'Mare');
 checkSource(sourceMonument, 'Monument');
 checkSource(sourceMonumentshistoriques, 'Monument historique');
-checkSource(sourceNiveaudurisque, 'Risque de remontée de nappes');
+checkSource(sourceNiveaudurisque, 'Risque de retrait-gonflement des argiles');
 
 checkSource(sourcePostesdetransformation, 'Postes de transformation électrique');
 checkSource(sourcePrescriptionslinaireMaucomble, 'Prescriptions linéaire Maucomble');
@@ -1527,7 +1543,7 @@ checkSource(sourceSitesBASOL, 'Sites BASOL');
 checkSource(sourceSitesclasss, 'Sites classés');
 checkSource(sourceSitesinscrits, 'Sites inscrits');
 checkSource(sourceSitespollus, 'Sites pollués');
-checkSource(sourceSPR, 'SPR');
+checkSource(sourceSPR, 'Site Patrimonial Remarquable');
 checkSource(sourceSurfaceshydrographiques, 'Surfaces hydrographiques');
 checkSource(sourceTerraindesport, 'Terrain de sport');
 checkSource(sourceTrononshydrographiques, 'Tronons hydrographiques');
@@ -1541,13 +1557,18 @@ checkSource(sourceZoneshumides, 'Zones humides');
 checkSource(sourceZonesrglementaires, 'Zones réglementaires');
 
   // Affichage résultat
-  let html = '<strong>Parcelle :</strong><ul>';
-  for (const key in parcelleSelectionnee.getProperties()) {
-    if (key !== 'geometry') {
-      html += `<li>${key} : ${parcelleSelectionnee.get(key)}</li>`;
-    }
+ let html = '<strong>Parcelle trouvée :</strong><ul>';
+
+const champsAConserver = ['id', 'nom', 'commune', 'prefixe', 'section', 'numero']; // liste des champs souhaités
+
+for (const key of champsAConserver) {
+  const value = parcelleSelectionnee.get(key);
+  if (value !== undefined) {
+    html += `<li>${key} : ${value}</li>`;
   }
-  html += '</ul><strong>Zones intersectées :</strong><ul>';
+}
+
+html += '</ul><strong>Éléments détectés sur la parcelle :</strong><ul>';
 
   if (zonesIntersectees.length) {
     zonesIntersectees.forEach(z => {
@@ -1562,33 +1583,53 @@ checkSource(sourceZonesrglementaires, 'Zones réglementaires');
 
   // Activation du bouton export
   document.getElementById('export-pdf-btn').disabled = false;
+  
+  
+  
+  
+  
 }
 
 function exportToPDF() {
   if (!parcelleSelectionnee) return alert("Aucune parcelle sélectionnée");
 
+   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('fr-FR');
+  
+  
+  
   let y = 10;
 
-  doc.setFontSize(14);
-  doc.text("Fiche Parcelle", 10, y);
+  doc.setFontSize(16);
+  doc.text("Fiche parcelle", 105, y, { align: "center" });
+  y += 10;
+  
+   doc.setFontSize(10);
+  doc.text(`Date : ${dateStr}`, 10, y);
   y += 10;
 
   // Parcelle
-  doc.setFontSize(12);
-  doc.text("Parcelle :", 10, y);
-  y += 8;
-  for (const key in parcelleSelectionnee.getProperties()) {
-    if (key !== "geometry") {
-      const line = `${key} : ${parcelleSelectionnee.get(key)}`;
-      doc.text(line, 10, y);
-      y += 7;
-    }
+doc.setFontSize(12);
+doc.text("Parcelle trouvée :", 10, y);
+y += 8;
+
+const champsAConserver = ['id', 'nom', 'commune', 'prefixe', 'section', 'numero']; 
+
+for (const key of champsAConserver) {
+  const value = parcelleSelectionnee.get(key);
+  if (value !== undefined) {
+    const line = `${key} : ${value}`;
+    doc.text(line, 10, y);
+    y += 7;
   }
-  y += 5;
+}
+
+y += 5;
 
   // Zones intersectées
-  doc.text("Zones intersectées :", 10, y);
+  doc.text("Éléments détectés sur la parcelle :", 10, y);
   y += 8;
 
   if (zonesIntersectees.length) {
@@ -1598,7 +1639,7 @@ function exportToPDF() {
       y += 7;
     });
   } else {
-    doc.text("Aucune zone intersectée", 10, y);
+    doc.text("Aucun élément détecté sur la parcelle", 10, y);
   }
 
   doc.save(`fiche_parcelle_${parcelleSelectionnee.get('sect_code')}.pdf`);
@@ -1613,12 +1654,29 @@ document.getElementById('search-btn').addEventListener('click', () => {
   document.getElementById('export-pdf-btn').disabled = true; // désactive l'export au nouveau search
 });
 
-document.getElementById('intersect-btn').addEventListener('click', verifierIntersections);
+<!-- document.getElementById('intersect-btn').addEventListener('click', verifierIntersections); -->
 
 document.getElementById('export-pdf-btn').addEventListener('click', exportToPDF);
 
 
-  document.getElementById('intersect-btn').addEventListener('click', verifierIntersections);
+
+
+document.getElementById('intersect-btn').addEventListener('click', async function() {
+  const loader = document.getElementById('loader');
+  loader.style.display = 'block';
+
+  // Forcer un petit délai pour laisser le temps au navigateur d'afficher le loader
+  await new Promise(resolve => setTimeout(resolve, 100));
+
+  await verifierIntersections();
+
+  loader.style.display = 'none';
+});
+
+
+
+
+  <!-- document.getElementById('intersect-btn').addEventListener('click', verifierIntersections); -->
 </script>
 
 </body>

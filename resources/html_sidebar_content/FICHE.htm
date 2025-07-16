@@ -130,7 +130,6 @@
 <script src="../../layers/ICPE.js"></script>
 <script src="../../layers/Indiffrenci.js"></script>
 <script src="../../layers/Industrielagricoleoucommercial.js"></script>
-<script src="../../layers/layers.js"></script>
 <script src="../../layers/LignesbassetensionariennesENEDIS.js"></script>
 <script src="../../layers/LignesbassetensionsouterrainesENEDIS.js"></script>
 <script src="../../layers/LigneshautetensionariennesENEDIS.js"></script>
@@ -1396,6 +1395,28 @@ function verifierIntersections() {
 	  
 	  
 	  
+	  
+	   // ⚠️ Test des couches sensibles (zones à petite intersection)
+      let estIncertain = false;
+      const estCoucheSensible = ['Natura 2000', 'Zones humides', 'ZNIEFF type 1', 'ZNIEFF type 2']
+        .some(cle => nomCouche.includes(cle));
+
+      if (estCoucheSensible) {
+        const intersection = turf.intersect(parcelleGeoJSON, zoneGeoJSON);
+        if (intersection) {
+          const aireIntersection = turf.area(intersection);
+          const aireParcelle = turf.area(parcelleGeoJSON);
+          const proportionCouverture = (aireIntersection / aireParcelle) * 100;
+
+          if (proportionCouverture < 5) { // seuil 5%
+            estIncertain = true;
+            console.log(`⚠️ Résultat incertain pour "${nomCouche}" (${proportionCouverture.toFixed(1)}%)`);
+          }
+        }
+      }
+	  
+	  
+	  
 	  // 🏛️ Vérification spéciale pour les couches d'urbanisme
         const estCoucheUrbanisme = nomCouche.startsWith('Secteurs') || nomCouche.startsWith('Prescriptions surfaciques');
         
@@ -1456,7 +1477,8 @@ function verifierIntersections() {
         
         zonesIntersectees.push({
           couche: coucheAffichee,
-          nom: nomAffiche
+          nom: nomAffiche,
+		   incertain: estIncertain // booléen
         });
       }
     });
@@ -1500,6 +1522,18 @@ function verifierIntersections() {
   }
   
   
+
+
+
+
+
+
+
+
+
+
+
+ 
  
  
 
@@ -2192,24 +2226,44 @@ y += 15;
 
 
 
-<!-- Message attention -->
+<!-- Messages attention -->
 
-if (logoAttention) {
-    doc.addImage(logoAttention, 'PNG', 29, 87.5, 7, 7); // x, y, width, height
-  }
+<!-- if (logoAttention) { -->
+    <!-- doc.addImage(logoAttention, 'PNG', 29, 87.5, 7, 7); // x, y, width, height -->
+  <!-- } -->
   
-if (logoAttention) {
-    doc.addImage(logoAttention, 'PNG', 175, 87.5, 7, 7); // x, y, width, height
-  }
+<!-- if (logoAttention) { -->
+    <!-- doc.addImage(logoAttention, 'PNG', 175, 87.5, 7, 7); // x, y, width, height -->
+  <!-- } -->
 
-doc.setFontSize(10);
-  doc.setTextColor(100);
-  doc.text(`Ce document est fourni à titre indicatif et ne saurait se substituer à une analyse humaine`, 105, 92, { align: "center" });
+<!-- doc.setFontSize(10); -->
+  <!-- doc.setTextColor(100); -->
+  <!-- doc.text(`Ce document est fourni à titre indicatif et ne saurait se substituer à une analyse humaine`, 105, 92, { align: "center" }); -->
   
-  // Dessiner la ligne pour souligner
-doc.setDrawColor(100); // gris foncé
-doc.setLineWidth(0.2);
-doc.line(36.6, y - 10.5, 174.25, y - 10.5);
+  <!-- // Dessiner la ligne pour souligner -->
+<!-- doc.setDrawColor(100); // gris foncé -->
+<!-- doc.setLineWidth(0.2); -->
+<!-- doc.line(36.6, y - 10.5, 174.25, y - 10.5); -->
+
+
+
+
+
+
+
+doc.setFontSize(10); 
+  doc.setTextColor(150); 
+  doc.setFont("helvetica", "bold");
+   doc.text(`Ce document est fourni à titre indicatif et ne saurait se substituer à une analyse humaine`, 105, 92, { align: "center" }); 
+
+
+
+
+
+
+
+
+
 
 <!-- Résultats -->
 
@@ -2228,7 +2282,8 @@ doc.line(36.6, y - 10.5, 174.25, y - 10.5);
       if (!groupes[theme]) groupes[theme] = [];
       groupes[theme].push({
         couche: z.couche,
-        nom: z.nom
+        nom: z.nom,
+		incertain: z.incertain
       });
     });
 
@@ -2252,7 +2307,7 @@ for (const theme in groupes) {
   doc.text(`${theme}`, 12, y);
   y += 8;
 
-  groupes[theme].forEach(({ couche, nom }) => {
+  groupes[theme].forEach(({ couche, nom, incertain }) => {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(10);
     doc.text(`• ${couche} :`, 12, y);
@@ -2261,13 +2316,44 @@ for (const theme in groupes) {
     const offset = doc.getTextWidth(`• ${couche} :`) + 13;
 
     doc.setFont("helvetica", "normal");
+	
+	  // Construction du texte avec le message incertain à la suite
+  const textePrincipal = nom;
+  const messageIncertain = incertain ? "Résultat incertain" : "";
 
-    
-    const nomLines = doc.splitTextToSize(nom, 200 - offset);
+  const texteComplet = textePrincipal + messageIncertain;
+  const texteLines = doc.splitTextToSize(texteComplet, 200 - offset);
 
-    for (let i = 0; i < nomLines.length; i++) {
-      doc.text(nomLines[i], offset, y);
+  for (let i = 0; i < texteLines.length; i++) {
+    // Première ligne
+    if (i === 0) {
+      const ligne = texteLines[i];
+
+      // Si incertain ET tout tient sur la première ligne, on peut placer l'icône et le message incertain
+      const largeurTexteNom = doc.getTextWidth(textePrincipal);
+      const largeurTotal = doc.getTextWidth(ligne);
+      const peutToutTenir = largeurTexteNom + doc.getTextWidth(messageIncertain) < (200 - offset);
+
+      // Affiche le nom en noir
+      doc.setTextColor(0);
+      doc.text(textePrincipal, offset, y);
+
+      if (incertain && peutToutTenir) {
+        const xIcone = offset + largeurTexteNom + 2;
+        const yIcone = y - 4;
+        doc.addImage(logoAttention, 'PNG', xIcone, yIcone, 5.5, 5.5);
+
+        doc.setTextColor(100); // gris
+        doc.text(messageIncertain, xIcone + 6.25, y);
+      }
+
       y += 5;
+    } else {
+      // Lignes suivantes (overflow) — tout en noir
+      doc.setTextColor(0);
+      doc.text(texteLines[i], offset, y);
+      y += 5;
+    }
 
       if (y > 260) {
 	  // AJOUT DU PIED DE PAGE AVANT DE CRÉER UNE NOUVELLE PAGE
